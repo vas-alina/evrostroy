@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import useStore from '../hooks/useStoreRegistrationPageForm';
 import styles from './RegistrationLayout.module.css'
 
 export const RegistrationLayout = ({
@@ -17,10 +17,9 @@ export const RegistrationLayout = ({
   
     let errorMessages = '';
     errorMessages += isEmailValid ? '' : 'Допускается только корпоративная почта ';
-    errorMessages += isLoginValid ? '' : 'Логин должен быть до 12 символов. ';
+    errorMessages += isNameValid ? '' : 'Используйте кириллицу для имени. ';
     errorMessages += isPasswordValid ? '' : 'Пароль должен содержать буквы и цифры. ';
-    // errorMessages += isNameValid ? '' : 'Используйте кириллицу для имени. ';
-
+    errorMessages += isLoginValid ? '' : 'Логин должен быть до 12 символов. ';
     return (
         <div>
             <form onSubmit={handleSubmit} className={styles.container_form__register}>
@@ -46,10 +45,8 @@ export const RegistrationLayout = ({
                 value={login}
                 onChange={({target} )=> updateState ('login', target.value)}
                 />
-                
-                
+                               
                 <input 
-               
                 name="password"
                 type="password"
                 placeholder="Придумайте пароль с буквами и цифрами"
@@ -62,13 +59,9 @@ export const RegistrationLayout = ({
                  
 
                 <button type="submit" className={styles.btn} 
-               disabled={!isLoginValid || !isPasswordValid || !isEmailValid || !isNameValid}
+               disabled={!isEmailValid || !isNameValid || !isLoginValid || !isPasswordValid }
                 > Зарегистрироваться</button>
             </form>
         </div>
     )
 }
-
-// RegistrationLayout.PropTypes = {
-//     isPasswordValid: PropTypes.func,
-// }
