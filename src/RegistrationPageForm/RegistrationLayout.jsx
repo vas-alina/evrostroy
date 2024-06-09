@@ -33,7 +33,7 @@ export const RegistrationLayout = ({
                 <input 
                 name="name"
                 type="text"
-                placeholder="Имя, Фамилия"
+                placeholder="Введите имя"
                 value={name}
                 onChange={({target} )=> updateState ('name', target.value)}
                 />
